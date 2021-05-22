@@ -1,6 +1,4 @@
 /node_modules
-seed.js
-testAxios.js
 package-lock.json
 test.html
 .env
