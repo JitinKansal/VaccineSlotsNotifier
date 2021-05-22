@@ -1,0 +1,95 @@
+*{
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    letter-spacing: 0.1em;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+#title{
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+    padding-left: 2rem;
+    background-color: #3b43d6;
+}
+
+#title h1{
+    font-weight: 900;
+    color: black;
+    margin-bottom: 0;
+}
+#title span{
+    color: white;
+}
+
+#title h6{
+    font-weight: 800;
+    color: white;
+    padding-left: 2rem;
+}
+
+#covid{
+    padding-top: 1rem;
+    padding-left: 4rem;
+}
+#covid .card{
+    margin: 0.5rem;
+    border-style: none;
+    border: 0.125em solid gray;
+    border-radius: 1rem;
+    padding:none;
+    text-align: center;
+    font-weight: 700;
+}
+
+#covid img{
+    border-radius: 1rem 1rem 0 0;
+}
+#covid p{
+    color: #001219;
+}
+
+.privacy{
+    font-size: 0.6rem;
+    margin-top: 0.9rem;
+}
+
+.privacy i{
+    display: inline;
+}
+#heart{
+    color:red;
+}
+
+#form{
+    font-weight: 500;
+    margin-top: 0.5rem;
+    border: 0.125em solid gray;
+    border-radius: 1rem;
+}
+#form-title h2{
+    padding-top: 0.5rem;
+}
+
+#form-title p{
+    color: #3b43d6;
+}
+
+#privacy{
+    margin-top: 0.5rem;
+    font-size: smaller;
+    color: darkslategray;
+    padding: 0 2rem;
+}
+
+#privacy h2{
+    text-align: center;
+    font-weight: 600;
+}
+#privacy h5{
+    /* text-align: center; */
+    font-weight: 600;
+}
+
+.privacy p{
+
+}

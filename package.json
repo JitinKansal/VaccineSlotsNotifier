@@ -1,0 +1,21 @@
+{
+  "name": "slotsnotifier",
+  "version": "1.0.0",
+  "description": "\"Vaccine slots notifier notifies you whenever the slots are available in your area.\"",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Jitin_Kansal",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "jquery": "^3.6.0",
+    "mongoose": "^5.12.10",
+    "nodemailer": "^6.6.0",
+    "nodemon": "^2.0.7",
+    "xmlhttprequest": "^1.8.0"
+  }
+}

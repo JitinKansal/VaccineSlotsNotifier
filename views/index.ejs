@@ -1,0 +1,89 @@
+
+<%-include("./partials/header")%>
+
+<div id="title">
+  <h1>Vaccine<span>Slots</span>Notifier</h1class>
+  <h6>A CO-WIN Vaccine Slots Notification System</h6>
+</div>
+
+  <div class="row">
+    <div class="col-7" id="covid">
+          <div class="card-group">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1608422050730-6b9c51d45c8d?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8Y29yb25hdmlydXMlMjBwcmV2ZW50aW9ufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" 
+                class="card-img-top" alt="image1">
+                <div class="card-body">
+                  <p class="card-text">Vaccines enhance your body's natural defenses, without causing illness.</p>
+                </div>
+            </div>
+            <div class="card">
+                 <img src="https://images.unsplash.com/photo-1596188253588-5d06a502b40c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8ZG9jdG9ycyUyMHByYWN0aWNlfGVufDB8MXwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" 
+                 class="card-img-top" alt="image2">
+                <div class="card-body">
+                  <p class="card-text">Respect and appreciate the service they provide to this society every day.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1584707823901-1122f7028325?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzB8fGNvcm9uYXZpcnVzJTIwd29ybGR3aWRlfGVufDB8MXwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" 
+                class="card-img-top" alt="image3">
+                <div class="card-body">
+                  <p class="card-text">Wear mask and use sanitizer.</p>
+                </div>
+            </div>
+          </div> 
+          <div class="privacy">
+            <p>Made With <i id="heart" class="fas fa-heart"></i> By <a href="https://www.linkedin.com/in/jitin-kansal-08345b18b/">JITIN KANSAL</a> 
+              <i class="fas fa-at"></i> <a href="<%=process.env.MY_URL%>privacy">Privacy Policy</a></p>
+          </div> 
+      </div>
+
+    <!-- Registration Area -->
+    <div class="col-5 px-5">
+      <div class="container" id="form">
+        <div id="form-title">
+          <h2>Register</h2>
+          <p>Choose your preferences and get vaccine availability sent straight to your mailbox!</p>
+        </div>
+        <form method="POST" action="/verifymail">
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Name:</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" name="user[name]" required>
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Email address:</label>
+            <input type="email" class="form-control" id="exampleFormControlInput1" name="user[mailId]" placeholder="name@example.com" required>
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">PIN Code:</label>
+            <input type="tel" minlength="6" maxlength="6" class="form-control" id="exampleFormControlInput1" name="user[pincode]" required>
+          </div>
+
+          <fieldset class="row py-2 mx-auto">
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+              <input type="radio" class="btn-check" name="user[minage]" id="btnradio1" value="18" checked>
+              <label class="btn btn-outline-primary" for="btnradio1">18+</label>
+            
+              <input type="radio" class="btn-check" name="user[minage]" id="btnradio2" value="45">
+              <label class="btn btn-outline-primary" for="btnradio2">45+</label>
+            </div>
+          </fieldset>
+
+            <fieldset class="row py-2 mx-auto">
+              <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="user[dose]" id="btnradio3" value="dose1" checked>
+                <label class="btn btn-outline-primary" for="btnradio3">Dose 1</label>
+              
+                <input type="radio" class="btn-check" name="user[dose]" id="btnradio4" value="dose2">
+                <label class="btn btn-outline-primary" for="btnradio4">Dose 2</label>
+              </div>
+            </fieldset>
+
+            <div class="py-3 px-2">
+            <button type="submit" class="btn btn-primary ">Notify</button>
+            </div>     
+          </form>    
+  </div>
+</div>
+
+
+<%-include("./partials/footer")%>
