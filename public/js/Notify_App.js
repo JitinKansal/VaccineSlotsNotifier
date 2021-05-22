@@ -132,7 +132,9 @@ async function checkSlots_Notify() {
                 }
             }
         }
-        });
+    }).catch(error=>{
+        console.log(error);
+    });
     });
 };
 
