@@ -43,65 +43,80 @@ app.get('/privacy', (req,res)=>{
 })
 
 app.post('/verifymail',async(req,res)=>{
-    const search = await User.find({"data.mailId":req.body.user.mailId});
-    if(search[0])
-    {
-        res.render('already_registered');
+    try{
+        const search = await User.find({"data.mailId":req.body.user.mailId});
+        if(search[0])
+        {
+            res.render('already_registered');
+        }
+        else{
+            const content = verifyMailTemp(req.body.user.name,req.body.user.pincode,req.body.user.mailId,req.body.user.minage,req.body.user.dose);
+            await send_mails(req.body.user.mailId,"Verify your mail!",content);
+            res.render('sucess');
+        }
     }
-    else{
-        const content = verifyMailTemp(req.body.user.name,req.body.user.pincode,req.body.user.mailId,req.body.user.minage,req.body.user.dose);
-        await send_mails(req.body.user.mailId,"Verify your mail!",content);
-        res.render('sucess');
+    catch(e){
+        console.log("Catches the error",e);
     }
 });
 
 
 app.get('/register',async(req,res)=>{
-    const pin = req.query.pincode;
-    const search = await User.find({pincode:pin});
-    if(search.length>0){
-        console.log("Pincode Already Exist");
-        const obj={
-            name:req.query.name,
-            mailId:req.query.mailId,
-            minage:req.query.minage,
-            dose:req.query.dose,
-            slotsnotified:0,
-        }
-        // console.log(search[0].data);
-       search[0].data.push(obj);
-       await search[0].save();
-    }
-    else{
-        console.log("Pincode Is New Creating Entry");
-        const obj = {
-            pincode:pin,
-            data:[{
+    try{
+        const pin = req.query.pincode;
+        const search = await User.find({pincode:pin});
+        if(search.length>0){
+            console.log("Pincode Already Exist");
+            const obj={
                 name:req.query.name,
                 mailId:req.query.mailId,
                 minage:req.query.minage,
                 dose:req.query.dose,
                 slotsnotified:0,
-            }]
+            }
+            // console.log(search[0].data);
+        search[0].data.push(obj);
+        await search[0].save();
         }
-        await User.create(obj);
+        else{
+            console.log("Pincode Is New Creating Entry");
+            const obj = {
+                pincode:pin,
+                data:[{
+                    name:req.query.name,
+                    mailId:req.query.mailId,
+                    minage:req.query.minage,
+                    dose:req.query.dose,
+                    slotsnotified:0,
+                }]
+            }
+            await User.create(obj);
+        }
+        res.render('mailverified');
     }
-    res.render('mailverified');
+    catch(e){
+        console.log("Catches the error",e);
+    }
 });
 
 app.get('/unsubscribe',async(req,res)=>{
-    const searchUser = await User.find( { pincode:req.query.pincode})
-    for(i=0;i<searchUser[0].data.length;i++)
-    {
-        if(searchUser[0].data[i].mailId === req.query.mailId)
+    try{
+        const searchUser = await User.find( { pincode:req.query.pincode})
+        for(i=0;i<searchUser[0].data.length;i++)
         {
-            obj = searchUser[0].data[i];
-            searchUser[0].data.pull(obj);
-            await searchUser[0].save();
-            break;
+            if(searchUser[0].data[i].mailId === req.query.mailId)
+            {
+                obj = searchUser[0].data[i];
+                searchUser[0].data.pull(obj);
+                await searchUser[0].save();
+                break;
+            }
         }
+        res.render('unsubscribed');
     }
-    res.render('unsubscribed');
+    catch(e){
+        console.log("Catches the error",e);
+    }    
 });
 
 function sleep(ms) {
@@ -109,7 +124,7 @@ function sleep(ms) {
  }
 
  async function main(){
-     await sleep(10000);;
+     await sleep(20000);;
      while(true){
         console.log("/////////////////////New call//////////////////////////");
         await checkSlots_Notify();
