@@ -48,7 +48,9 @@ async function checkSlots_Notify() {
         let url = process.env.COWIN_URL1+pincode+process.env.COWIN_URL2+date;
         sendHttpRequest('GET',url)
         .then(async data=>{
+            console.log(data);
             var myjson = await JSON.parse(data);
+            console.log(myjson);
             var centers = myjson.centers;
             if(centers){
             for(let i=0;i<mailer_list.length;i++)
