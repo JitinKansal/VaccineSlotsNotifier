@@ -24,16 +24,15 @@ mongoose.connect(process.env.DB_URL,
     .then(()=>{
         console.log("DB Connected");
     })
-    .catch((err)=>{
+    .catch(err=>{
         console.log("Something went wrong");
         console.log(err);
-    })
+    });
 
 app.set('view engine','ejs');
 app.set('views',path.join(__dirname,'/views'));
 app.use(express.static(path.join(__dirname,'/public')));
 app.use(express.urlencoded({extended:true}));
-app.use(express.json);
 
 app.get('/', (req,res)=>{
     res.render('index');
@@ -110,6 +109,7 @@ function sleep(ms) {
  }
 
  async function main(){
+     await sleep(10000);;
      while(true){
         console.log("/////////////////////New call//////////////////////////");
         await checkSlots_Notify();
@@ -121,7 +121,7 @@ function sleep(ms) {
 
 // seedDb();
 
- main();
+main();
 
 app.listen(process.env.PORT || 3000,()=>{
     console.log(`server running at portal ${process.env.PORT} or at 3000.`);
