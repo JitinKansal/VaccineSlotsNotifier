@@ -4,7 +4,7 @@
   "description": "\"Vaccine slots notifier notifies you whenever the slots are available in your area.\"",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "nodemon ./app.js"
   },
   "author": "Jitin_Kansal",
   "license": "ISC",

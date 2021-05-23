@@ -4,6 +4,8 @@
     margin: 0;
     padding: 0;
     width: 100%;
+    height: auto;
+    font-size: 100%;
 }
 #title{
     padding-top: 1rem;
@@ -90,6 +92,27 @@
     font-weight: 600;
 }
 
-.privacy p{
+@media(max-width:998px)
+{
+    html{
+        font-size: 55%;
+    }
+}
 
+@media(max-width:700px)
+{
+    html{
+        font-size: 45%;
+    }
+    #covid img{
+        width: 100%;
+        height: 20rem;
+    }
+}
+@media(max-width:290px)
+{
+    html{
+        font-size: 40%;
+    }
+    
 }
