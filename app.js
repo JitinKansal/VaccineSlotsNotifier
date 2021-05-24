@@ -63,36 +63,45 @@ app.post('/verifymail',async(req,res)=>{
 
 app.get('/register',async(req,res)=>{
     try{
-        const pin = req.query.pincode;
-        const search = await User.find({pincode:pin});
-        if(search.length>0){
-            console.log("Pincode Already Exist");
-            const obj={
-                name:req.query.name,
-                mailId:req.query.mailId,
-                minage:req.query.minage,
-                dose:req.query.dose,
-                slotsnotified:0,
-            }
-            // console.log(search[0].data);
-        search[0].data.push(obj);
-        await search[0].save();
+
+        const search = await User.find({"data.mailId":req.query.mailId});
+        if(search[0])
+        {
+            res.render('already_registered');
         }
         else{
-            console.log("Pincode Is New Creating Entry");
-            const obj = {
-                pincode:pin,
-                data:[{
+
+            const pin = req.query.pincode;
+            const search = await User.find({pincode:pin});
+            if(search.length>0){
+                console.log("Pincode Already Exist");
+                const obj={
                     name:req.query.name,
                     mailId:req.query.mailId,
                     minage:req.query.minage,
                     dose:req.query.dose,
                     slotsnotified:0,
-                }]
+                }
+                // console.log(search[0].data);
+            search[0].data.push(obj);
+            await search[0].save();
             }
-            await User.create(obj);
+            else{
+                console.log("Pincode Is New Creating Entry");
+                const obj = {
+                    pincode:pin,
+                    data:[{
+                        name:req.query.name,
+                        mailId:req.query.mailId,
+                        minage:req.query.minage,
+                        dose:req.query.dose,
+                        slotsnotified:0,
+                    }]
+                }
+                await User.create(obj);
+            }
+            res.render('mailverified');
         }
-        res.render('mailverified');
     }
     catch(e){
         console.log("Catches the error",e);
